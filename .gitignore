@@ -1,0 +1,49 @@
+Dependencies
+
+/node_modules
+
+Environment variables - IMPORTANT
+
+This ensures your secret API keys in the .env file are NOT uploaded to GitHub.
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+Firebase Configuration File
+
+This is now ignored because it could potentially expose sensitive info.
+
+The main app will get its keys from the .env file instead.
+
+js/firebase-config.js
+
+Production build folder
+
+/dist
+/build
+/out
+
+Log files
+
+.log
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+
+System files
+
+.DS_Store
+Thumbs.db
+
+Editor directories and files
+
+.idea
+.vscode/
+*.suo
+.ntvs
+*.njsproj
+*.sln
+*.sw?
