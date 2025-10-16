@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsong LA - Facility Rental Quote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50">
+
+    <div id="app" class="max-w-4xl mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-8">
+            <img src="https://storage2.snappages.site/DQ4C5T/assets/images/7358661_824x183_500.png" alt="Newsong LA Logo" class="mx-auto h-16 w-auto mb-4">
+            <h1 class="text-3xl sm:text-4xl font-bold text-purple-800">Facility Rental Quote</h1>
+            <p class="mt-2 text-lg text-gray-600">A simple way to calculate costs and request a space.</p>
+        </header>
+
+        <main id="quote-generator">
+            <!-- Step Navigation -->
+            <div class="flex items-center justify-center mb-8 border-b border-gray-200 pb-4">
+                <div id="step-1-indicator" class="step-active flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full border-2 flex items-center justify-center font-semibold">1</div>
+                    <span class="hidden md:inline font-sans">Event Details</span>
+                </div>
+                <div class="flex-grow border-t-2 border-gray-300 mx-4"></div>
+                <div id="step-2-indicator" class="step-inactive flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full border-2 flex items-center justify-center font-semibold">2</div>
+                    <span class="hidden md:inline font-sans">Review & Submit</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Form & Quote Builder -->
+            <div id="step-1">
+                <div class="space-y-8 bg-white p-6 md:p-8 rounded-xl shadow-md border">
+                    <p class="text-center text-gray-700">Please complete the form below with as much detail as possible. This will help us generate an accurate price quote for your event.</p>
+                    
+                    <!-- Section 1: Contact Information -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Contact Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="requesterName" class="form-label">Full Name</label>
+                                <input type="text" id="requesterName" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="requesterPhone" class="form-label">Phone Number</label>
+                                <input type="tel" id="requesterPhone" class="form-input" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="requesterEmail" class="form-label">Email Address</label>
+                                <input type="email" id="requesterEmail" class="form-input" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="organization" class="form-label">Organization/Group Name (if applicable)</label>
+                                <input type="text" id="organization" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Event Details -->
+                     <div class="form-section">
+                        <h3 class="form-section-title">Event Details</h3>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                 <label for="eventTitle" class="form-label">Event Title</label>
+                                <input type="text" id="eventTitle" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="eventType" class="form-label">Type of Event</label>
+                                <select id="eventType" class="form-input" required>
+                                    <option value="">-- Select Type --</option>
+                                    <option>Wedding Ceremony / Reception</option>
+                                    <option>Corporate Meeting / Conference</option>
+                                    <option>Anniversary / Birthday Party</option>
+                                    <option>Memorial Service</option>
+                                    <option>Concert / Recital</option>
+                                    <option>Workshop / Class</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="eventDescription" class="form-label">Brief Description of Event</label>
+                                <textarea id="eventDescription" class="form-input" rows="3" required></textarea>
+                            </div>
+                            <div>
+                                 <label for="attendees" class="form-label">Estimated Number of Attendees</label>
+                                 <input type="number" id="attendees" class="form-input no-spinner" min="1" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Date & Time -->
+                    <div class="form-section">
+                         <h3 class="form-section-title">Date & Time</h3>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                             <div>
+                                 <label for="eventDate" class="form-label">Requested Date of Event</label>
+                                 <input type="date" id="eventDate" class="form-input" required>
+                             </div>
+                              <div>
+                                 <label class="form-label">Are your dates flexible?</label>
+                                 <div class="flex items-center space-x-4 mt-2">
+                                     <label><input type="radio" name="flexibleDate" value="yes" class="mr-1 text-purple-600 focus:ring-purple-500"> Yes</label>
+                                     <label><input type="radio" name="flexibleDate" value="no" class="mr-1 text-purple-600 focus:ring-purple-500" checked> No</label>
+                                 </div>
+                             </div>
+                             <div>
+                                 <label for="startTime" class="form-label">Event Start Time (incl. setup)</label>
+                                 <input type="time" id="startTime" class="form-input" required>
+                             </div>
+                              <div>
+                                 <label for="endTime" class="form-label">Event End Time (incl. cleanup)</label>
+                                 <input type="time" id="endTime" class="form-input" required>
+                             </div>
+                         </div>
+                    </div>
+                    
+                    <!-- Section 4: Logistical Needs -->
+                    <div class="form-section">
+                         <h3 class="form-section-title">Logistical & Relationship Details</h3>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="form-label">Will food or beverages be served?</label>
+                                <div class="flex items-center space-x-4 mt-2">
+                                    <label><input type="radio" name="food" value="yes" class="mr-1 text-purple-600 focus:ring-purple-500"> Yes</label>
+                                    <label><input type="radio" name="food" value="no" class="mr-1 text-purple-600 focus:ring-purple-500" checked> No</label>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">A cleaning fee may apply to events with food/beverages.</p>
+                            </div>
+                            <div>
+                                 <label for="relationship" class="form-label">Your relationship to our church:</label>
+                                 <select id="relationship" class="form-input" required>
+                                     <option value="">-- Select relationship --</option>
+                                     <option value="member">I am a member or regular attendee.</option>
+                                     <option value="public">I am from the general public.</option>
+                                     <option value="nonprofit">I am a registered non-profit.</option>
+                                 </select>
+                             </div>
+                         </div>
+                    </div>
+
+                    <!-- NEW SECTION: Pricing Calculator -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Pricing Calculator</h3>
+                        <p class="mb-4 text-gray-600">Based on your event needs, use the calculator below to build your rental quote.</p>
+                        <div>
+                            <label for="rentalType" class="block text-lg font-semibold text-gray-800 mb-2">What type of space are you looking for?</label>
+                            <select id="rentalType" class="form-input">
+                                <option value="none" selected>-- Select an option --</option>
+                                <option value="package">Worship Service / Conference Package</option>
+                                <option value="room">A La Carte Room/Space</option>
+                            </select>
+                        </div>
+                        <div id="dynamic-options" class="space-y-6 mt-6"></div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-right">
+                    <button id="next-step-btn" class="w-full sm:w-auto bg-purple-800 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Next: Review & Submit</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Review & Submit -->
+            <div id="step-2" style="display: none;">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-md border">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Please Review Your Request</h2>
+                    <p class="mb-6 text-gray-600">Confirm all details are correct before submitting. This is the first step in the reservation process and does not confirm your booking.</p>
+
+                    <div id="request-summary" class="space-y-6 mb-6 border-b border-gray-200 pb-6"></div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Estimated Quote</h3>
+                        <div id="quote-summary" class="space-y-3 mb-6"></div>
+                        <div class="border-t pt-4">
+                            <p class="text-right text-2xl font-bold">Total Estimate: <span id="total-cost" class="text-purple-800">$0.00</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border mt-8">
+                     <h3 class="form-section-title">Agreement & Submission</h3>
+                     <div class="space-y-3">
+                         <label class="flex items-start">
+                            <input type="checkbox" id="termsConfirm" class="mt-1 h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500" required>
+                            <span class="ml-2 text-sm text-gray-700">I understand that submitting this form does not confirm my booking.</span>
+                        </label>
+                        <label class="flex items-start">
+                            <input type="checkbox" id="termsPolicy" class="mt-1 h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500" required>
+                            <span class="ml-2 text-sm text-gray-700">I have read and agree to the terms outlined in the church's <a href="#" class="text-purple-700 hover:underline">Facility Usage Policy</a>.</span>
+                        </label>
+                     </div>
+                     <button id="submit-request-btn" class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 mt-6 disabled:bg-gray-400">Confirm & Send Request</button>
+                </div>
+                <button id="back-step-btn" class="mt-6 w-full text-center text-purple-700 font-semibold hover:underline">Back to Edit</button>
+            </div>
+            
+            <!-- Modals and Admin section -->
+            <div id="success-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+                <div class="bg-white rounded-lg shadow-xl p-8 text-center max-w-sm">
+                    <h3 class="text-2xl font-bold text-green-600 mb-4">Request Sent!</h3>
+                    <p>Thank you! We've received your rental request and a copy has been sent to your email. Our team will review it and be in touch shortly.</p>
+                    <button onclick="document.getElementById('success-modal').classList.add('hidden')" class="mt-6 bg-purple-800 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-900">Close</button>
+                </div>
+            </div>
+             <div id="error-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+                <div class="bg-white rounded-lg shadow-xl p-8 text-center max-w-sm">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4">Error</h3>
+                    <p id="error-message">Something went wrong. Please try again.</p>
+                    <button onclick="document.getElementById('error-modal').classList.add('hidden')" class="mt-6 bg-purple-800 text-white font-bold py-2 px-6 rounded-lg">Close</button>
+                </div>
+            </div>
+        </main>
+
+        <div id="admin-dashboard" style="display:none;" class="bg-white p-6 rounded-xl shadow-md border mt-12">
+             <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Admin Dashboard: Rental Requests</h2>
+                <button id="logout-btn" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 text-sm transition duration-150">Log Out</button>
+            </div>
+            <div id="request-list" class="space-y-4">
+                <p>Loading requests...</p>
+            </div>
+        </div>
+
+        <div id="admin-login" style="display:none;" class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-md mt-12">
+            <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Admin Login</h2>
+            <form id="login-form" class="space-y-4">
+                <input type="password" id="admin-password" placeholder="Enter Admin Password" class="form-input">
+                <button type="submit" class="w-full bg-purple-800 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150 ease-in-out">Login</button>
+                <p id="login-error" class="text-red-500 text-sm text-center hidden">Incorrect password.</p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
